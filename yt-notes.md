@@ -3,10 +3,34 @@
 ## variables
 - **Dynamically** typed language
 	- Type is determined at runtime
-- Multiple Assignments `a, b = 0, 'abc'`
-- Increment `n = n + 1` or `n += 1` **but not** `n++`
+```python
+n = 0
+print('n =', n)
+>>> n = 0
+
+n = "abc"
+print('n =', n)
+>>> n = abc
+```
+- Multiple Assignments
+```python
+n, m = 0, "abc"
+n, m, z = 0.125, "abc", False
+```
+- Increment
+```python
+n = n + 1 # good
+n += 1    # good
+n++       # won't work
+```
 - `None` is null in python
 	- absence of value 
+```python
+n = 4
+n = None
+print("n =", n)
+>>> n = None
+```
 
 ## if statements
 - No parentheses are required for conditions 
@@ -14,16 +38,50 @@
 	- **Indentation** is used instead
 -  `:` after a conditional
 -  `elif` instead of `else if`
+```python
+n = 1
+if n > 2:
+    n -= 1
+elif n == 2:
+    n *= 2
+else:
+    n += 2
+```
 - Parentheses are required for multi-line conditions or  *if you want to force an order of operations*
 - `and` instead of `&&`
 - `or` instead of `||`
+```python
+n, m = 1, 2
+if ((n > 2 and 
+    n != m) or n == m):
+    n += 1
+```
 
 ## loops
 - similar to if statements, `while` loops requires colon, indentation, no parentheses, no curly braces
+```python
+n = 5
+while n < 5:
+    print(n)
+    n += 1
+```
 - `for` loop uses `range()` with a counter variable like `i` 
 	- `range()` can have a **start, stop & step** as arguments
 	- only stop is mandatory, default values of start & step are 0 & 1
 	- stop value is excluded, so its **0 to (stop - 1)**
+```python
+# Looping from i = 0 to i = 4
+for i in range(5):
+    print(i)
+
+# Looping from i = 2 to i = 5
+for i in range(2, 6):
+    print(i)
+
+# Looping from i = 5 to i = 2
+for i in range(5, 1, -1):
+    print(i)
+```
 
 ## math
 - **decimal division** by default, instead of **integer division** by other languages
@@ -47,7 +105,7 @@ print(math.fmod(-10, 3)) # -1
 - `float("inf")` for a max integer
 - `float("-inf")` for a min integer
 - Python numbers are infinite so they never overflow
-	- `math.pow(2,200) < float("inf")`
+	- `print(math.pow(2,200) < float("inf")) # true`
 
 ## arrays
 - called as **lists** and uses `[]`
@@ -55,24 +113,41 @@ print(math.fmod(-10, 3)) # -1
 ```python
 arr = [1, 2, 3]
 print(arr) # [1, 2, 3]
+
 arr.append(4)
 arr.append(5)
 print(arr) # [1, 2, 3, 4, 5]
+
 arr.pop()
 print(arr) # [1, 2, 3, 4]
 ```
 - but since they are technically an array, values can be inserted by position 
 	- `arr.insert(pos, val)`
-	- **O^n** time operation
+	- **O(n)** time operation
+```python
+arr.insert(1, 7)
+print(arr) # [1, 7, 2, 3, 4, 5]
+```
 - Indexing & reassigning
 	- `print(arr[pos])`
 	- `arr[pos] = val`
 	- constant time operation
+```python
+arr[0] = 0
+arr[3] = 0
+print(arr) # [0, 7, 2, 0, 4, 5]
+```
 - Initializing an array using: `arr = [1] * 5 # [1, 1, 1, 1, 1]`
 - Length of the array: `print(len(arr))`
 - `arr[-1]` is not **out of bounds**, instead it's the last value
 	- similarly `arr[-2]` returns the 2nd last value  
 - Slicing: `arr[start:end]` *end i.e. last index is non-inclusive*
+```python
+arr = [1, 2, 3, 4]
+print(arr[1:3]) # [2, 3]
+
+print(arr[0:10]) # [1, 2, 3, 4]
+```
 - Unpacking: `a, b, c = [1, 2, 3]` 
 - Looping through arrays
 	- Using index
@@ -156,24 +231,32 @@ arr = [[0] * 4 for i in range(4)]
 print(arr) # [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 
 arr = [[0] * 4] * 4 # not same as previous method
-print(arr) # [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]] 
-# each of the 4 rows are the same(reference values), they are not 4 unique rows.
+print(arr) # [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+# each of the 4 rows are the same(reference values), they are not 4 unique rows. 
 ```
 
 ## strings
 - Similar to arrays, represented by `s = 'abc'` or `s = "abc"`
-- Slicing: `print(s[0:2]) # ab`
-- Immutable i.e. `s[0] = "A" # this is not possible`
+- Slicing
+```python
+s = "abc"
+print(s[0:2])
+```
+- Immutable i.e. `s[0] = "A"` **this is not possible**
 - We can update the whole string
 	- `s += "def" # actually creates a new string`
-	- **O^n** time operation
+	- **O(n)** time operation
 - Conversions
-	- `print(int("123") + int("123")) # 246`
-	- `print(str(123) + str(123)) # 123123`
+```python
+print(int("123") + int("123")) # 246
+print(str(123) + str(123)) # 123123
+```
 - `print(ord('a')) # 97 - ASCII value`
-- Combining a list of string with an empty string delimitor
-	- `strings = ["ab", "cd", "ef"]`
-	- `print("".join(strings)) # abcded` 
+- Combining a list of strings with an empty string delimiter
+```python
+strings = ["ab", "cd", "ef"]
+print("".join(strings)) # abcded
+```
 
 ## queues
 - Double ended queues by default
@@ -347,6 +430,12 @@ while arr:
 - parameters in function declaration
 - colon and indented function body
 - function call with arguments
+```python
+def myFunc(n, m):
+    return n * m
+
+print(myFunc(3, 4))
+```
 
 ## nested functions
 - useful in recursive problems, graph problems
