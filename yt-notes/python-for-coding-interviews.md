@@ -95,7 +95,7 @@ for i in range(5, 1, -1):
 	- `print(-10 % 3)` ->  `2` instead of `-1` like most languages
 ```python
 import math
-print(math.fmod(-10, 3)) # -1
+print(math.fmod(-10, 3)) # -1.0
 ```
 - math helper functions
 	- `math.floor(3/2)`
@@ -149,8 +149,9 @@ print(arr[1:3]) # [2, 3]
 print(arr[0:10]) # [1, 2, 3, 4]
 ```
 - Unpacking: `a, b, c = [1, 2, 3]` 
-- Looping through arrays
-	- Using index
+
+### Looping through arrays
+- Using index
 ```python
 nums = [1, 2, 3]
 for i in range(len(nums)):
@@ -161,7 +162,8 @@ for i in range(len(nums)):
 3
 """
 ```
-	- Without index
+
+- Without index
 ```python
 nums = [1, 2, 3]
 for n in nums:
@@ -172,7 +174,8 @@ for n in nums:
 3
 """
 ```
-	- Another method using index & value
+
+- Another method with index & value
 ```python
 nums = [1, 2, 3]
 for i, n in enumerate(nums):
@@ -183,7 +186,8 @@ for i, n in enumerate(nums):
 2 3
 """
 ```
-	- looping though multiple arrays using unpacking
+
+- simultaneously looping though multiple arrays using unpacking
 ```python
 nums1 = [1, 3, 5]
 nums2 = [2, 4, 6]
@@ -195,6 +199,7 @@ for n1, n2 in zip(nums1, nums2):
 5 6
 """
 ```
+
 - Reversing an array: `arr.reverse()`
 
 ## sorting
@@ -211,7 +216,7 @@ arr = ["bob", "alice", "jane", "doe"]
 arr.sort()
 print(arr) # ['alice', 'bob', 'doe', 'jane']
 
-#custom sort - by length of string
+# custom sort - by length of string
 arr.sort(key=lambda x: len(x))
 print(arr) # ['bob', 'doe', 'jane', 'alice']
 ```
@@ -463,11 +468,11 @@ def double(arr, val):
 		nonlocal val
 		val *= 2
 	helper()
-	print(arr, val)
+	print(arr, val) # [2, 4] 6
 
 nums = [1, 2]
 val = 3
-double(nums, val) # [2, 4] 6
+double(nums, val) 
 ```
 ## classes
 ```python
